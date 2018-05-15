@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types"
 
 class Landing extends Component {
 	render() {
+		if(this.props.auth.isAuthenticated) {
+			this.props.history.push("/dashboard");
+		}
 		return (
 			<div className="landing">
 		    <div className="dark-overlay landing-inner text-light">
@@ -24,4 +29,14 @@ class Landing extends Component {
 	}
 }
 
-export default Landing;
+Landing.propTypes = {
+	auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => {
+	return {
+		auth: state.auth
+	};
+};
+
+export default connect(mapStateToProps)(Landing);

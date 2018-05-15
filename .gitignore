@@ -3,3 +3,6 @@
 
 # package manager
 package-lock.json
+
+# keys
+/config/keys_dev.js

@@ -9,7 +9,7 @@ const passport = require("passport");
 const validatePostInput = require("../../validation/post");
 
 const Profile = require("../../models/Profile");
-const Posts = require("../../models/Posts");
+const Post = require("../../models/Post");
 const keys = require("../../config/keys");
 
 // @router GET api/posts/test
@@ -66,7 +66,7 @@ router.delete("/:id", passport.authenticate("jwt", {session: false}), (req, res)
 						return res.status(401).json({notauthorized: "User not authorized."});
 					}
 					// Delete
-					Post.remove().then(() => res.json({success: true}));
+					post.remove().then(() => res.json({success: true}));
 				})
 				.catch(err => res.status(404).json({postnotfound: "Post not found."}));
 		});
